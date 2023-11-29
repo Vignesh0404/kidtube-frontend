@@ -184,10 +184,10 @@ const Signup = () => {
             Signin
           </Link>
         </span>
-        <span>OR</span>
+        {/* <span>OR</span>
         <SignUpButton onClick={handleSignUpWithGoogle}>
           Sign up with Google
-        </SignUpButton>
+        </SignUpButton> */}
       </Wrapper>
     </Container>
   );

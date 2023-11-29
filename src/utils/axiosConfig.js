@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true;
 
 
 export const axiosInstance = axios.create({
-  baseURL: "https://kidtube-server.vercel.app/api",
+  baseURL: "http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },

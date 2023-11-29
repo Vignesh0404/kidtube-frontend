@@ -160,10 +160,10 @@ const Signin = () => {
             Signup
           </Link>
         </span>
-        <span>OR</span>
+        {/* <span>OR</span>
         <SignInButton onClick={handleSignInWithGoogle}>
           Sign In with Google
-        </SignInButton>
+        </SignInButton> */}
       </Wrapper>
     </Container>
   );

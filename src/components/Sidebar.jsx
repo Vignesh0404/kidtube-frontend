@@ -4,6 +4,7 @@ import ytLogo from "../img/icon.png";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -52,6 +53,7 @@ const Item = styled.div`
 
   &:hover {
     background-color: #FF8E26;
+    color: white;
     margin: 0 0.5rem;
   }
 `;
@@ -110,12 +112,13 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
             Explore
           </Item>
         </Link>
+
         <Link
           to="/subscriptions"
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <Item>
-            <SubscriptionsOutlinedIcon />
+            <FavoriteBorderIcon />
             Favorites
           </Item>
         </Link>
@@ -130,12 +133,12 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
         </Item> */}
         
         <Link
-          to="/Settings"
+          to="/settings"
           style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
-          <SettingsOutlinedIcon />
-          Settings
-        </Item>
+            <SettingsOutlinedIcon />
+            Settings
+          </Item>
         </Link>
         {/* <Item onClick={(e) => setDarkMode((prev) => !prev)}>
           <SettingsBrightnessOutlinedIcon />

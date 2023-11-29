@@ -1,5 +1,9 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useSelector } from "react-redux";
 
 const SettingsContainer = styled.div`
   max-width: 500px;
@@ -9,7 +13,9 @@ const SettingsContainer = styled.div`
   align-items: left;
   align-items: flex-start;
 `;
-
+const Break = styled.div`
+  height: 100px;
+`;
 const SectionTitle = styled.h2`
   margin-bottom: 36px;
 `;
@@ -61,7 +67,11 @@ const CircleIcon = styled.label`
 `;
 
 const Button = styled.button`
-  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;  
+  padding: 10px 15px;
   background-color: black;
   color: #fff;
   border: none;
@@ -77,10 +87,23 @@ const ImagePreview = styled.img`
   border: 1px solid black;
 `;
 
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+`;
+
 // Define the Settings component
 const Settings = () => {
-  const [name, setName] = useState('John Doe');
-  const [username, setUsername] = useState('johndoe');
+  const { loggedInUser } = useSelector((state) => state.user);
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [previewImage, setPreviewImage] = useState(null);
@@ -149,22 +172,16 @@ const Settings = () => {
       </FormGroup>
 
       <FormGroup>
+        <Label><b>Email address:</b><p>{loggedInUser?.email}</p></Label>
+      </FormGroup>
+
+      <FormGroup>
         <Label><b>Name:</b></Label>
         <Input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="name"
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <Label><b>Username:</b></Label>
-        <Input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="username"
         />
       </FormGroup>
 
@@ -178,8 +195,42 @@ const Settings = () => {
         />
       </FormGroup>
 
-      <Button onClick={handleSaveChanges}>Save Changes</Button>
+      <Button onClick={handleSaveChanges}><SaveAltIcon/>Save Changes</Button>
+
+      <Break></Break>
+      
+      <SectionTitle>Add New Child</SectionTitle>
+      <FormGroup>
+        <Label><b>Name:</b></Label>
+        <Input
+          type="text"
+          placeholder="child name"
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label><b>Birthday:</b></Label>
+        <Input
+          type="text"
+          placeholder="MM/DD/YYYY"
+        />
+      </FormGroup>
+      <Button><AddCircleOutlineIcon/>Add Child</Button>
+
+      <Break></Break>
+      
+      <SectionTitle>Child Users</SectionTitle>
+      {/* script to fetch child names from logged in user, else display "no child users found" */}
+      <Item>
+        <DeleteForeverIcon alt="Delete"></DeleteForeverIcon>
+        Anna
+      </Item>
+      <Item>
+        <DeleteForeverIcon alt="Delete"></DeleteForeverIcon>
+        Mikhael
+      </Item>
+
     </SettingsContainer>
+
   );
 };
 

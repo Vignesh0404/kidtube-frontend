@@ -70,7 +70,7 @@ const App = () => {
                 />
                 <Route
                   path="settings"
-                  element={<Settings />}
+                  element={loggedInUser ? <Settings /> : <Navigate to="/signin" />}
                 />
                 <Route path="video">
                   <Route path=":videoId" element={<Video />} />

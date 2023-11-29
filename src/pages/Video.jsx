@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -111,10 +113,11 @@ const VideoDescription = styled.p`
   font-size: 14px;
 `;
 
-const SubsribeButton = styled.button`
+const SubscribeButton = styled.button`
   background-color: ${(props) =>
     props.isSub ? "#FFDCD2" : "#FFA096"};
   font-weight: 500;
+  font-size: 13px;
   color: ${(props) =>
     props.isSub ? "#283246" : "white"};
   height: max-content;
@@ -145,6 +148,29 @@ const Video = () => {
   const { loggedInUser } = useSelector((state) => state.user);
   const [channel, setChannel] = useState({});
   const { videos } = useSelector((state) => state.videos);
+
+  const handleCopyToClipboard = () => {
+    const videoUrl = window.location.href;
+
+    navigator.clipboard.writeText(videoUrl).then(
+      () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'URL Copied to Clipboard!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+      (err) => {
+        console.error('Unable to copy to clipboard', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to copy URL to clipboard',
+        });
+      }
+    );
+  };
 
   useEffect(() => {
     const addView = async () => {
@@ -318,9 +344,11 @@ const Video = () => {
               )}
               Dislike
             </Button>
-            <Button>
-              <ShareOutlinedIcon /> Share
-            </Button>
+            <div>
+              <Button onClick={handleCopyToClipboard}>
+                <ShareOutlinedIcon /> Share
+              </Button>
+            </div>
             {/* <Button>
               <AddTaskOutlinedIcon /> Save
             </Button> */}
@@ -340,7 +368,7 @@ const Video = () => {
               </VideoDescription>
             </ChannelDetail>
           </ChannelInfo>
-          <SubsribeButton
+          <SubscribeButton
             onClick={handleSubscription}
             isSub={
               loggedInUser &&
@@ -353,7 +381,7 @@ const Video = () => {
             loggedInUser.subscribedUsers?.includes(channel?._id)
               ? "REMOVE FROM FAVORITES"
               : "ADD TO FAVORITES"}
-          </SubsribeButton>
+          </SubscribeButton>
         </Channel>
         <Hr />
         <Comments videoId={currentVideo._id} />
