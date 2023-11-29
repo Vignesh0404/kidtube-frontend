@@ -25,6 +25,7 @@ height: 100%;
 padding: 8px;
 border: 1px solid #ccc;
 border-radius: 5px;
+background-color:white;
 `;
   
   const UploadPic = ({
