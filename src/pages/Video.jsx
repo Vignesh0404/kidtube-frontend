@@ -361,7 +361,7 @@ const Video = () => {
             <ChannelDetail>
               <ChannelName>{channel?.name}</ChannelName>
               <ChannelCounter>
-                {channel?.subscribers} Subscribers
+                Favorited by {channel?.subscribers} users
               </ChannelCounter>
               <VideoDescription>
                 {currentVideo && currentVideo.description}

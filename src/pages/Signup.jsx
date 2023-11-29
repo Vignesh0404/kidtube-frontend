@@ -164,12 +164,13 @@ const Signup = () => {
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Label htmlFor="passoword">Password:</Label>
+        <Label htmlFor="password">Password:</Label>
         <Input
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        <Label htmlFor="ProfileImage">Profile Image:</Label>
         <UploadProfileImage
           img={img}
           setImg={setImg}

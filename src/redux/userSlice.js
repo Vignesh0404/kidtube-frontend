@@ -47,6 +47,17 @@ export const userSlice = createSlice({
         state.loggedInUser.subscribedUsers.push(action.payload);
       }
     },
+    updateStart: (state) => {
+      state.loading = true;
+    },
+    updateSuccess: (state, action) => {
+      state.loading = false;
+      state.loggedInUser = action.payload;
+    },
+    updateError: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
   },
 });
 
@@ -59,6 +70,9 @@ export const {
   signupError,
   logout,
   subscription,
+  updateStart,
+  updateSuccess,
+  updateError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -86,7 +86,7 @@ const UploadProfileImage = ({
 
   return (
     <>
-      <Label>Profile Image:</Label>
+      {/* <Label>Profile Image:</Label> */}
       <Input
         type="file"
         accept="image/*"

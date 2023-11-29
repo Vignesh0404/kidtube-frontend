@@ -11,6 +11,7 @@ import Logout from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function UserMenu({ loggedInUser }) {
@@ -92,7 +93,11 @@ export default function UserMenu({ loggedInUser }) {
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          <Link
+          to="/settings"
+          style={{ textDecoration: "none", color: "inherit" }}>
+            Settings
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
